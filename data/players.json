@@ -1,0 +1,268 @@
+{
+    "players": [
+        {
+            "id": 1,
+            "name": "Florin Nita",
+            "position": "brankář",
+            "teamId": 1
+        },
+        {
+            "id": 2,
+            "name": "Lukáš Štetina",
+            "position": "obránce",
+            "teamId": 1
+        },
+        {
+            "id": 3,
+            "name": "Martin Frýdek",
+            "position": "obránce",
+            "teamId": 1
+        },
+        {
+            "id": 4,
+            "name": "Ondřej Čelůstka",
+            "position": "obránce",
+            "teamId": 1
+        },
+        {
+            "id": 5,
+            "name": "David Hancko",
+            "position": "záložník",
+            "teamId": 1
+        },
+        {
+            "id": 6,
+            "name": "Ladislav Krejčí",
+            "position": "záložník",
+            "teamId": 1
+        },
+        {
+            "id": 7,
+            "name": "Filip Souček",
+            "position": "záložník",
+            "teamId": 1
+        },
+        {
+            "id": 8,
+            "name": "Lukáš Provod",
+            "position": "záložník",
+            "teamId": 1
+        },
+        {
+            "id": 9,
+            "name": "Adam Hložek",
+            "position": "útočník",
+            "teamId": 1
+        },
+        {
+            "id": 10,
+            "name": "Libor Kozák",
+            "position": "útočník",
+            "teamId": 1
+        },
+        {
+            "id": 11,
+            "name": "David Moberg-Karlsson",
+            "position": "útočník",
+            "teamId": 1
+        },
+        {
+            "id": 12,
+            "name": "Ondřej Kolář",
+            "position": "brankář",
+            "teamId": 2
+        },
+        {
+            "id": 13,
+            "name": "Alexander Bah",
+            "position": "obránce",
+            "teamId": 2
+        },
+        {
+            "id": 14,
+            "name": "Jan Bořil",
+            "position": "obránce",
+            "teamId": 2
+        },
+        {
+            "id": 15,
+            "name": "David Zima",
+            "position": "obránce",
+            "teamId": 2
+        },
+        {
+            "id": 16,
+            "name": "Jakub Hromada",
+            "position": "záložník",
+            "teamId": 2
+        },
+        {
+            "id": 17,
+            "name": "Lukáš Masopust",
+            "position": "záložník",
+            "teamId": 2
+        },
+        {
+            "id": 18,
+            "name": "Tomáš Holeš",
+            "position": "záložník",
+            "teamId": 2
+        },
+        {
+            "id": 19,
+            "name": "Nicolae Claudiu Stanciu",
+            "position": "záložník",
+            "teamId": 2
+        },
+        {
+            "id": 20,
+            "name": "Peter Olayinka",
+            "position": "útočník",
+            "teamId": 2
+        },
+        {
+            "id": 21,
+            "name": "Abdallah Sima",
+            "position": "útočník",
+            "teamId": 2
+        },
+        {
+            "id": 22,
+            "name": "Jan Kuchta",
+            "position": "útočník",
+            "teamId": 2
+        },
+        {
+            "id": 23,
+            "name": "Aleš Hruška",
+            "position": "Goalkeeper",
+            "teamId": 3
+          },
+          {
+            "id": 24,
+            "name": "Lukáš Štetina",
+            "position": "Defender",
+            "teamId": 3
+          },
+          {
+            "id": 25,
+            "name": "Jakub Brabec",
+            "position": "Defender",
+            "teamId": 3
+          },
+          {
+            "id": 26,
+            "name": "Jan Kopic",
+            "position": "Midfielder",
+            "teamId": 3
+          },
+          {
+            "id": 27,
+            "name": "Tomáš Hořava",
+            "position": "Midfielder",
+            "teamId": 3
+          },
+          {
+            "id": 28,
+            "name": "Lukáš Kalvach",
+            "position": "Midfielder",
+            "teamId": 3
+          },
+          {
+            "id": 29,
+            "name": "Jan Kovařík",
+            "position": "Midfielder",
+            "teamId": 3
+          },
+          {
+            "id": 30,
+            "name": "Aleksei Tataev",
+            "position": "Forward",
+            "teamId": 3
+          },
+          {
+            "id": 31,
+            "name": "Jiří Janoščík",
+            "position": "Forward",
+            "teamId": 3
+          },
+          {
+            "id": 32,
+            "name": "Lukáš Pazdera",
+            "position": "Forward",
+            "teamId": 3
+          },
+          {
+            "id": 33,
+            "name": "Václav Pilař",
+            "position": "Forward",
+            "teamId": 3
+          },
+          {
+            "id": 34,
+            "name": "Filip Nguyen",
+            "teamId": 4,
+            "position": "Brankář"
+          },
+          {
+            "id": 35,
+            "name": "Jaroslav Zelený",
+            "teamId": 4,
+            "position": "Obránce"
+          },
+          {
+            "id": 36,
+            "name": "Jan Kuchta",
+            "teamId": 4,
+            "position": "Obránce"
+          },
+          {
+            "id": 37,
+            "name": "Tomas Malinsky",
+            "teamId": 4,
+            "position": "Obránce"
+          },
+          {
+            "id": 38,
+            "name": "Jakub Jugas",
+            "teamId": 4,
+            "position": "Záložník"
+          },
+          {
+            "id": 39,
+            "name": "Jiri Chramosta",
+            "teamId": 4,
+            "position": "Záložník"
+          },
+          {
+            "id": 40,
+            "name": "Jan Matousek",
+            "teamId": 4,
+            "position": "Záložník"
+          },
+          {
+            "id": 41,
+            "name": "Martin Koscelnik",
+            "teamId": 4,
+            "position": "Útočník"
+          },
+          {
+            "id": 42,
+            "name": "Tomas Ladra",
+            "teamId": 4,
+            "position": "Útočník"
+          },
+          {
+            "id": 43,
+            "name": "Pavel Zachariáš",
+            "teamId": 4,
+            "position": "Útočník"
+          },
+          {
+            "id": 44,
+            "name": "Dusan Kuciak",
+            "teamId": 4,
+            "position": "Brankář"
+          }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "teams": [
+        {
+            "id": 1,
+            "name": "Sparta Praha",
+            "stadium": {
+                "name": "Generali Arena",
+                "capacity": 20816
+            }
+        },
+        {
+            "id": 2,
+            "name": "Slavia Praha",
+            "stadium": {
+                "name": "Eden Aréna",
+                "capacity": 21000
+            }
+        },
+        {
+            "id": 3,
+            "name": "FC Viktoria Plzeň",
+            "stadium": {
+                "name": "Doosan Aréna",
+                "capacity": 11500
+            }
+        },
+        {
+            "id": 4,
+            "name": "FC Slovan Liberec",
+            "stadium": {
+                "name": "Stadion u Nisy",
+                "capacity": 9900
+            }
+        }
+    ]
+}

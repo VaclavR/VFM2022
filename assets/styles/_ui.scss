@@ -1,0 +1,40 @@
+@import 'variables';
+
+body {
+    background: url('assets/images/grass.jpg') no-repeat;
+    background-size: cover;
+    color: $white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.separator {
+    border-color: $green;
+    border-style: solid;
+}
+
+.content {
+    background-color: rgba($black, .8);
+    height: 100vh;
+}
+
+.heading {
+    padding: 0 40px 4px 0;
+    border-bottom: 3px solid $green;
+    display: inline-block;
+}
+
+.box {
+    background-color: rgba($darkGreen, .95);
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid $green;
+}
+
+.team-row {
+    cursor: pointer;
+    transition: color .2s ease-in;
+
+    &:hover {
+        color: $yellow;
+    }
+}
