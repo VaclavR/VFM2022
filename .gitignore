@@ -1,6 +1,6 @@
 node_modules/
 /*
 !index.html
-!readme.md
+!README.md
 !package.json
 !.gitignore
