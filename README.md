@@ -1,6 +1,6 @@
 # VFM2022
 
-* instalace balicku: 
+* instalace balíčků: 
    * `npm i`
 * web server: 
    * `npx parcel index.html`
