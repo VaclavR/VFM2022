@@ -1,7 +1,8 @@
 # VFM2022
 
-## web server:
- npx parcel index.html
-
-## sass:
- sass --watch assets/styles/app.scss app.css
+* instalace balicku: 
+   * `npm i`
+* web server: 
+   * `npx parcel index.html`
+* sass: 
+   * `sass --watch assets/styles/app.scss app.css`
