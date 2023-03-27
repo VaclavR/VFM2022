@@ -1,4 +1,4 @@
-import { getTeamsFromFirebase, getPlayersFromFirebase, getTeamById } from './firebase.js';
+import { getTeamsFromFirebase, getPlayersFromFirebase, getTeamById } from './model.js';
 
 export class Team {
     constructor(id, name, stadium, players) {
@@ -8,20 +8,25 @@ export class Team {
         this.players = players;
     }
 
-    static priceFormat = new Intl.NumberFormat('cs-CS', {
+    priceFormat = new Intl.NumberFormat('cs-CS', {
         style: 'currency',
         currency: 'CZK',
       });
 
-    static renderAllTeams = async () => {
+    initSort = (el) => {
+        
+    }  
+
+    renderAllTeams = async () => {
         try {
             const teams = await getTeamsFromFirebase();
-            const teamListEl = document.getElementById('team-list');
+            const table = document.getElementById('team-list');
+            const teamListEl = table.querySelector('[data-team-list]');
             let teamRows = '';
 
             teams.forEach(team => {
                 const teamRow = /*html*/ `
-                <div class="row mb-5 team-row" data-team-id="${team.id}">
+                <div class="row mb-5 clickable-el" data-team-id="${team.id}">
                     <div class="col-20">
                         <div>${team.name}</div>
                     </div>
@@ -55,10 +60,10 @@ export class Team {
         }
     }
 
-    static renderTeamPlayers = async (teamId) => {
+    renderTeamPlayers = async (teamId) => {
         try {
             const players = await getPlayersFromFirebase(teamId);
-            const playerBoxEl = document.getElementById('player-box');
+            const playerBoxEl = document.getElementById('box-2');
             const teamNameEl = playerBoxEl.querySelector('[data-team-name]');
             const playerListEl = playerBoxEl.querySelector('[data-player-list]');
             let playerRows = '';

@@ -3,6 +3,6 @@
 * instalace balíčků: 
    * `npm i`
 * web server: 
-   * `npx parcel index.html`
+   * `npm run server`
 * sass: 
-   * `sass --watch assets/styles/app.scss app.css`
+   * `npm run sass`
