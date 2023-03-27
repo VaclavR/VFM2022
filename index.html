@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Football Manager</title>
-    <link rel="stylesheet" href="./app.css" />
+    <link rel="stylesheet" href="./public/app.css" />
     <script src="./assets/js/index.js" type="module"></script>
 </head>
 
@@ -14,20 +14,13 @@
     <div class="content">
         <div class="container">
             <h1 class="text-center mt-40 mb-30">VFM 2023</h1>
-            
-            <div class="box" id="box-1">
-                
-            </div>
-            <div class="box mt-10 d-none" id="box-2">
-                
-            </div>
+            <div class="box" id="box-1"></div>
+            <div class="box mt-10 d-none" id="box-2"></div>
         </div>
     </div>
     <script type="module">
         import teamsHeaderHtml from 'bundle-text:./templates/teams-header.html';
         import playersHeader from 'bundle-text:./templates/players-header.html';
-        console.log(teamsHeaderHtml);
-
         document.getElementById('box-1').innerHTML = teamsHeaderHtml;
         document.getElementById('box-2').innerHTML = playersHeader;
     </script>
