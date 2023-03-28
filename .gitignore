@@ -1,8 +1,4 @@
 node_modules/
-/*
-!index.html
-!README.md
-!package.json
-!.gitignore
-!templates
-!assets
+dist/
+public/app.css
+public/app.css.map

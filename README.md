@@ -1,8 +1,10 @@
 # VFM2022
 
-* instalace balíčků: 
+* Instalace balíčků: 
    * `npm i`
-* web server: 
+* Instalace SASS:
+   * `npm i -g sass`   
+* Web server: 
    * `npm run server`
-* sass: 
+* SASS: 
    * `npm run sass`
