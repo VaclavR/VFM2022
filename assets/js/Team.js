@@ -1,60 +1,58 @@
 import { getTeamsFromFirebase, getPlayersFromFirebase, getTeamById } from './model.js';
+import { teamRow, playerRow } from './html.js';
 
 export class Team {
     constructor(id, name, stadium, players) {
-        this.id = id;
-        this.name = name;
-        this.stadium = stadium;
-        this.players = players;
+        // this.id = id;
+        // this.name = name;
+        // this.stadium = stadium;
+        // this.players = players;
     }
 
-    priceFormat = new Intl.NumberFormat('cs-CS', {
-        style: 'currency',
-        currency: 'CZK',
-      });
+    initSort = (sortEl, data, renderEl, row) => {
+        sortEl.addEventListener('click', (e) => {
+            const clickedElement = e.target;
+            const column = clickedElement.getAttribute('data-sort');
+            const direction = clickedElement.getAttribute('data-direction');
+            this.sort(data, column, direction);
+            clickedElement.dataset.direction = direction === 'asc' ? 'dsc' : 'asc';
+            this.renderData(data, renderEl, row);
+        })
+    }
 
-    initSort = (el) => {
-        
-    }  
+    sort = (data, column, direction) => {        
+        if (direction === 'asc') {
+            data.sort((a, b) => a[column] < b[column] ? -1 : a[column] > b[column] ? 1 : 0);
+        } else {
+            data.sort((a, b) => a[column] > b[column] ? -1 : a[column] < b[column] ? 1 : 0);
+        }
+    }
 
-    renderAllTeams = async () => {
+    renderData = (data, element, row) => {
+        let rows = '';
+
+        data.forEach(item => {
+            rows += row(item);
+        })
+
+        element.innerHTML = rows;
+        element.addEventListener('click', (e) => {
+            const clickedElement = e.target.closest('[data-team-id]');
+            if (clickedElement) {
+                const teamId = parseInt(clickedElement.getAttribute('data-team-id'));
+                this.renderTeamPlayers(teamId);
+            }
+        })
+    }
+
+    getAndRenderAllTeams = async () => {
         try {
             const teams = await getTeamsFromFirebase();
             const table = document.getElementById('team-list');
+            const sortControlEl = table.querySelector('[data-sort-control]')
             const teamListEl = table.querySelector('[data-team-list]');
-            let teamRows = '';
-
-            teams.forEach(team => {
-                const teamRow = /*html*/ `
-                <div class="row mb-5 clickable-el" data-team-id="${team.id}">
-                    <div class="col-20">
-                        <div>${team.name}</div>
-                    </div>
-                    <div class="col-20">
-                        <div>${team.stadium}</div>
-                    </div>
-                    <div class="col-20">
-                        <div>${team.capacity}</div>
-                    </div>
-                    <div class="col-20">
-                        <div>${team.city}</div>
-                    </div>
-                    <div class="col-20">
-                        <div>${team.sponsor}</div>
-                    </div>
-                </div>
-                `
-                teamRows += teamRow;
-            })
-
-            teamListEl.innerHTML = teamRows;
-            teamListEl.addEventListener('click', (e) => {
-                const clickedElement = e.target.closest('[data-team-id]');
-                if (clickedElement) {
-                    const teamId = parseInt(clickedElement.getAttribute('data-team-id'));
-                    this.renderTeamPlayers(teamId);
-                }
-            })
+            this.renderData(teams, teamListEl, teamRow);
+            this.initSort(sortControlEl, teams, teamListEl, teamRow);
         } catch (error) {
             console.log(error);
         }
@@ -69,33 +67,12 @@ export class Team {
             let playerRows = '';
             getTeamById(teamId)
                 .then(team => {
-                    console.log(team);
                     teamNameEl.textContent = team.name;
                 })
                 .catch(error => {
                     console.log(error);
                 })
-            
-            players.forEach(player => {
-                const playerRow = /*html*/ `
-                <div class="row mb-5 team-row" data-player-id="${player.id}">
-                    <div class="col-20">
-                        <div>${player.name}</div>
-                    </div>
-                    <div class="col-20">
-                        <div>${player.age}</div>
-                    </div>
-                    <div class="col-20">
-                        <div>${player.position}</div>
-                    </div>
-                    <div class="col-20">
-                        <div>${this.priceFormat.format(player.price)}</div>
-                    </div>
-                </div>
-                `
-                playerRows += playerRow;
-            })
-            playerListEl.innerHTML = playerRows;
+            this.renderData(players, playerListEl, playerRow);
             playerBoxEl.classList.remove('d-none');
         } catch (error) {
             console.log(error);

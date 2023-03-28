@@ -7,6 +7,6 @@ export class App {
   }
 
   start() {
-    this.team.renderAllTeams();
+    this.team.getAndRenderAllTeams();
   }
 }
