@@ -1,4 +1,5 @@
 node_modules/
+.parcel-cache/
 dist/
 public/app.css
 public/app.css.map
