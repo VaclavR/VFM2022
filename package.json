@@ -4,7 +4,9 @@
   "description": "",
   "main": "./assets/js/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch assets/styles/app.scss public/app.css",
+    "server": "npx parcel index.html"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +15,7 @@
     "firebase": "^9.18.0"
   },
   "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.8.3",
     "parcel": "^2.8.3",
     "process": "^0.11.10"
   }

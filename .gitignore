@@ -1,6 +1,5 @@
 node_modules/
-/*
-!index.html
-!README.md
-!package.json
-!.gitignore
+.parcel-cache/
+dist/
+public/app.css
+public/app.css.map

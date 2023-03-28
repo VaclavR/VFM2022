@@ -1,8 +1,10 @@
 # VFM2022
 
-* instalace balíčků: 
+* Instalace balíčků: 
    * `npm i`
-* web server: 
-   * `npx parcel index.html`
-* sass: 
-   * `sass --watch assets/styles/app.scss app.css`
+* Instalace SASS:
+   * `npm i -g sass` 
+* SASS: 
+   * `npm run sass`
+* Web server: 
+   * `npm run server`
