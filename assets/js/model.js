@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, get, set, reverse, child, query, onValue, orderByChild, orderByValue, equalTo, startAt } from "firebase/database";
-// import { players, teams } from "./data";
+import { getDatabase, ref, get, set, push, reverse, child, query, onValue, orderByChild, orderByValue, equalTo, startAt } from "firebase/database";
+import { players, teams } from "./data";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -20,7 +20,18 @@ const database = getDatabase(app);
 const dbRef = ref(database);
 const teamsRef = ref(database, 'teams');
 const playersRef = ref(database, 'players');
+// let playersObj = {}
+// let teamsObj = {}
+
+// for (let i = 0; i < players.length; i++) {
+//   object[i] = players[i];
+// }
+// for (let i = 0; i < players.length; i++) {
+//   object[i] = players[i];
+// }
 // set(playersRef, players)
+// set(teamsRef, teams)
+// console.log(object);
 
 export const getPlayersFromFirebase = async (teamId) => {
   const playersQuery = query(

@@ -2,25 +2,36 @@ import { getTeamsFromFirebase, getPlayersFromFirebase, getTeamById } from './mod
 import { teamRow, playerRow } from './html.js';
 
 export class Team {
-    constructor(id, name, stadium, players) {
-        // this.id = id;
-        // this.name = name;
-        // this.stadium = stadium;
-        // this.players = players;
+    constructor() {
+      this.firstPlayersRender = true;
+      this.firstTeamsRender = true;
     }
 
-    initSort = (sortEl, data, renderEl, row) => {
-        sortEl.addEventListener('click', (e) => {
-            const clickedElement = e.target;
-            const column = clickedElement.getAttribute('data-sort');
-            const direction = clickedElement.getAttribute('data-direction');
-            this.sort(data, column, direction);
-            clickedElement.dataset.direction = direction === 'asc' ? 'dsc' : 'asc';
-            this.renderData(data, renderEl, row);
-        })
+    handleSortClick = (sortEl, row) => (e) => {
+        const clickedElement = e.target;
+        const column = clickedElement.getAttribute('data-sort');
+        const direction = clickedElement.getAttribute('data-direction');
+        const dataElement = sortEl.closest('.table').querySelector('[data-sort-data]');
+        const dataType = dataElement.getAttribute('data-sort-data');
+        this.sort(this[dataType], column, direction);
+        clickedElement.dataset.direction = direction === 'asc' ? 'dsc' : 'asc';
+        this.renderData(this[dataType], dataElement, row);
     }
 
-    sort = (data, column, direction) => {        
+    handleTeamClick = (e) => {
+        const clickedElement = e.target.closest('[data-team-id]');
+        if (clickedElement) {
+            const teamId = parseInt(clickedElement.getAttribute('data-team-id'));
+            this.renderTeamPlayers(teamId);
+        }
+    }
+    
+    initSort = (sortEl, row) => {
+        let handleSortClick = this.handleSortClick(sortEl, row);
+        sortEl.addEventListener('click', handleSortClick);
+    }
+
+    sort = (data, column, direction) => {
         if (direction === 'asc') {
             data.sort((a, b) => a[column] < b[column] ? -1 : a[column] > b[column] ? 1 : 0);
         } else {
@@ -36,23 +47,21 @@ export class Team {
         })
 
         element.innerHTML = rows;
-        element.addEventListener('click', (e) => {
-            const clickedElement = e.target.closest('[data-team-id]');
-            if (clickedElement) {
-                const teamId = parseInt(clickedElement.getAttribute('data-team-id'));
-                this.renderTeamPlayers(teamId);
-            }
-        })
+
+        if (this.firstTeamsRender) {
+            element.addEventListener('click', this.handleTeamClick);
+            this.firstTeamsRender = false;
+        }
     }
 
     getAndRenderAllTeams = async () => {
         try {
-            const teams = await getTeamsFromFirebase();
+            this.teams = await getTeamsFromFirebase();
             const table = document.getElementById('team-list');
             const sortControlEl = table.querySelector('[data-sort-control]')
-            const teamListEl = table.querySelector('[data-team-list]');
-            this.renderData(teams, teamListEl, teamRow);
-            this.initSort(sortControlEl, teams, teamListEl, teamRow);
+            const teamListEl = table.querySelector('[data-sort-data]');
+            this.renderData(this.teams, teamListEl, teamRow);
+            this.initSort(sortControlEl, teamRow);
         } catch (error) {
             console.log(error);
         }
@@ -60,11 +69,11 @@ export class Team {
 
     renderTeamPlayers = async (teamId) => {
         try {
-            const players = await getPlayersFromFirebase(teamId);
+            this.players = await getPlayersFromFirebase(teamId);
             const playerBoxEl = document.getElementById('box-2');
             const teamNameEl = playerBoxEl.querySelector('[data-team-name]');
-            const playerListEl = playerBoxEl.querySelector('[data-player-list]');
-            let playerRows = '';
+            const playerListEl = playerBoxEl.querySelector('[data-sort-data]');
+            const sortControlEl = playerBoxEl.querySelector('[data-sort-control]')
             getTeamById(teamId)
                 .then(team => {
                     teamNameEl.textContent = team.name;
@@ -72,8 +81,13 @@ export class Team {
                 .catch(error => {
                     console.log(error);
                 })
-            this.renderData(players, playerListEl, playerRow);
-            playerBoxEl.classList.remove('d-none');
+            this.renderData(this.players, playerListEl, playerRow);
+            
+            if (this.firstPlayersRender) {
+                this.initSort(sortControlEl, playerRow);
+                playerBoxEl.classList.remove('d-none');
+                this.firstPlayersRender = false;
+            }
         } catch (error) {
             console.log(error);
         }
