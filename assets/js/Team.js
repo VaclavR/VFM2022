@@ -1,95 +1,106 @@
-import { getTeamsFromFirebase, getPlayersFromFirebase, getTeamById } from './model.js';
+import { getTeamById } from './model.js';
 import { teamRow, playerRow } from './html.js';
+import { service } from './Service';
+import { appState } from './AppState';
 
-export class Team {
-    constructor() {
-      this.firstPlayersRender = true;
-      this.firstTeamsRender = true;
-    }
+class Team {
+	constructor(appState, service) {
+		this.appState = appState;
+		this.service = service;
+		this.firstPlayersRender = true;
+		this.firstTeamsRender = true;
+	}
 
-    handleSortClick = (sortEl, row) => (e) => {
-        const clickedElement = e.target;
-        const column = clickedElement.getAttribute('data-sort');
-        const direction = clickedElement.getAttribute('data-direction');
-        const dataElement = sortEl.closest('.table').querySelector('[data-sort-data]');
-        const dataType = dataElement.getAttribute('data-sort-data');
-        this.sort(this[dataType], column, direction);
-        clickedElement.dataset.direction = direction === 'asc' ? 'dsc' : 'asc';
-        this.renderData(this[dataType], dataElement, row);
-    }
+	static setActiveClass = (element, cssClass = 'active') => {
+		const parent = element.parentNode;
+		const lastActiveEl = parent.querySelector(`.${cssClass}`);
+		lastActiveEl?.classList.remove(cssClass);
+		element.classList.add(cssClass);
+	};
 
-    handleTeamClick = (e) => {
-        const clickedElement = e.target.closest('[data-team-id]');
-        if (clickedElement) {
-            const teamId = parseInt(clickedElement.getAttribute('data-team-id'));
-            this.renderTeamPlayers(teamId);
-        }
-    }
-    
-    initSort = (sortEl, row) => {
-        let handleSortClick = this.handleSortClick(sortEl, row);
-        sortEl.addEventListener('click', handleSortClick);
-    }
+	handleTeamClick = (e) => {
+		const clickedElement = e.target.closest('[data-team-id]');
+		if (clickedElement) {
+			this.appState.currentTeamId = parseInt(clickedElement.getAttribute('data-team-id'));
+			this.renderTeamPlayers();
+			Team.setActiveClass(clickedElement);
+		}
+	};
 
-    sort = (data, column, direction) => {
-        if (direction === 'asc') {
-            data.sort((a, b) => a[column] < b[column] ? -1 : a[column] > b[column] ? 1 : 0);
-        } else {
-            data.sort((a, b) => a[column] > b[column] ? -1 : a[column] < b[column] ? 1 : 0);
-        }
-    }
+	initSort = (sortEl, row) => {
+		const handleSortClick = this.handleSortClick(sortEl, row);
+		sortEl.addEventListener('click', handleSortClick);
+	};
 
-    renderData = (data, element, row) => {
-        let rows = '';
+	handleSortClick = (sortEl, row) => (e) => {
+		const clickedElement = e.target;
+		const column = clickedElement.getAttribute('data-sort');
+		const direction = clickedElement.getAttribute('data-direction');
+		const dataElement = sortEl.closest('.table').querySelector('[data-sort-data]');
+		const dataType = dataElement.getAttribute('data-sort-data');
+		this.appState.sort.dataType = dataType;
+		this.appState.sort[dataType].direction = direction;
+		this.appState.sort[dataType].column = column;
+		this.service.sort();
+		clickedElement.dataset.direction = direction === 'asc' ? 'dsc' : 'asc';
+		this.renderData(this.appState[dataType], dataElement, row);
+	};
 
-        data.forEach(item => {
-            rows += row(item);
-        })
+	renderData = (data, element, row) => {
+		let rows = '';
 
-        element.innerHTML = rows;
+		data.forEach(item => {
+			rows += row(item);
+		});
 
-        if (this.firstTeamsRender) {
-            element.addEventListener('click', this.handleTeamClick);
-            this.firstTeamsRender = false;
-        }
-    }
+		element.innerHTML = rows;
 
-    getAndRenderAllTeams = async () => {
-        try {
-            this.teams = await getTeamsFromFirebase();
-            const table = document.getElementById('team-list');
-            const sortControlEl = table.querySelector('[data-sort-control]')
-            const teamListEl = table.querySelector('[data-sort-data]');
-            this.renderData(this.teams, teamListEl, teamRow);
-            this.initSort(sortControlEl, teamRow);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+		if (this.firstTeamsRender) {
+			element.addEventListener('click', this.handleTeamClick);
+			this.appState.watchState();
+			this.firstTeamsRender = false;
+		}
+	};
 
-    renderTeamPlayers = async (teamId) => {
-        try {
-            this.players = await getPlayersFromFirebase(teamId);
-            const playerBoxEl = document.getElementById('box-2');
-            const teamNameEl = playerBoxEl.querySelector('[data-team-name]');
-            const playerListEl = playerBoxEl.querySelector('[data-sort-data]');
-            const sortControlEl = playerBoxEl.querySelector('[data-sort-control]')
-            getTeamById(teamId)
-                .then(team => {
-                    teamNameEl.textContent = team.name;
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-            this.renderData(this.players, playerListEl, playerRow);
-            
-            if (this.firstPlayersRender) {
-                this.initSort(sortControlEl, playerRow);
-                playerBoxEl.classList.remove('d-none');
-                this.firstPlayersRender = false;
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
+	getAndRenderAllTeams = async () => {
+		try {
+			await this.appState.loadTeams();
+			const table = document.getElementById('team-list');
+			const sortControlEl = table.querySelector('[data-sort-control]');
+			const teamListEl = table.querySelector('[data-sort-data]');
+			this.renderData(this.appState.teams, teamListEl, teamRow);
+			this.initSort(sortControlEl, teamRow);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	renderTeamPlayers = async () => {
+		try {
+			await this.appState.loadPlayers();
+			const playerBoxEl = document.getElementById('box-2');
+			const teamNameEl = playerBoxEl.querySelector('[data-team-name]');
+			const playerListEl = playerBoxEl.querySelector('[data-sort-data]');
+			const sortControlEl = playerBoxEl.querySelector('[data-sort-control]');
+			getTeamById(this.appState.currentTeamId)
+				.then(team => {
+					this.appState.currentTeamName = team.name;
+					teamNameEl.textContent = team.name;
+				})
+				.catch(error => {
+					console.log(error);
+				});
+			this.renderData(this.appState.players, playerListEl, playerRow);
+
+			if (this.firstPlayersRender) {
+				this.initSort(sortControlEl, playerRow);
+				playerBoxEl.classList.remove('d-none');
+				this.firstPlayersRender = false;
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 }
+
+export const team = new Team(appState, service);

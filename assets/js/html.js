@@ -1,9 +1,10 @@
-import { Service } from "./service"
+import { service } from "./Service";
+import { appState } from "./AppState";
 
-const service = new Service();
-
-export const teamRow = (team) => /*html*/`
-    <div class="row mb-5 clickable-el" data-team-id="${team.id}">
+export const teamRow = (team) => {
+	const activeClass = appState.currentTeamId === team.id ? ' active' : '';
+	return  /*html*/`
+    <div class="row mb-5 clickable-el${activeClass}" data-team-id="${team.id}">
         <div class="col-20">
             <div>${team.name}</div>
         </div>
@@ -20,9 +21,10 @@ export const teamRow = (team) => /*html*/`
             <div>${team.sponsor}</div>
         </div>
     </div>
-`
+`;
+};
 
-export const playerRow = (player) => /*html*/ `
+export const playerRow = player => /*html*/ `
     <div class="row mb-5 team-row" data-player-id="${player.id}">
         <div class="col-20">
             <div>${player.name}</div>
@@ -37,4 +39,4 @@ export const playerRow = (player) => /*html*/ `
             <div>${service.priceFormat(player.price)}</div>
         </div>
     </div>
-`
+`;
