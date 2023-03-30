@@ -1,7 +1,5 @@
-import { App } from "./app";
-
-const app = new App();
+import { app } from "./App";
 
 document.addEventListener("DOMContentLoaded", () => {
-  app.start();
+	app.start();
 });

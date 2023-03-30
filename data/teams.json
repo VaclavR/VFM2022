@@ -1,36 +1,34 @@
 {
-    "teams": [
-        {
-            "id": 1,
-            "name": "Sparta Praha",
-            "stadium": {
-                "name": "Generali Arena",
-                "capacity": 20816
-            }
-        },
-        {
-            "id": 2,
-            "name": "Slavia Praha",
-            "stadium": {
-                "name": "Eden Aréna",
-                "capacity": 21000
-            }
-        },
-        {
-            "id": 3,
-            "name": "FC Viktoria Plzeň",
-            "stadium": {
-                "name": "Doosan Aréna",
-                "capacity": 11500
-            }
-        },
-        {
-            "id": 4,
-            "name": "FC Slovan Liberec",
-            "stadium": {
-                "name": "Stadion u Nisy",
-                "capacity": 9900
-            }
-        }
-    ]
+    "0": {
+        "id": 1,
+        "name": "AC Sparta Praha",
+        "city": "Praha",
+        "stadium": "Generali Arena",
+        "capacity": 19260,
+        "sponsor": "ePojisteni.cz"
+    },
+    "1": {
+        "id": 2,
+        "name": "SK Slavia Praha",
+        "city": "Praha",
+        "stadium": "Eden Aréna",
+        "capacity": 21000,
+        "sponsor": "Europ Assistance"
+    },
+    "2": {
+        "id": 3,
+        "name": "FC Baník Ostrava",
+        "city": "Ostrava",
+        "stadium": "Městský stadion",
+        "capacity": 15250,
+        "sponsor": "OKD"
+    },
+    "3": {
+        "id": 4,
+        "name": "FC Viktoria Plzeň",
+        "city": "Plzeň",
+        "stadium": "Doosan Arena",
+        "capacity": 11246,
+        "sponsor": "Škoda Transportation"
+    }
 }
