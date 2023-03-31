@@ -2,6 +2,7 @@ import { getTeamById } from './model.js';
 import { teamRow, playerRow } from './html.js';
 import { service } from './Service';
 import { appState } from './AppState';
+import { classNames } from './classNames.js';
 
 class Team {
 	constructor(appState, service) {
@@ -11,11 +12,18 @@ class Team {
 		this.firstTeamsRender = true;
 	}
 
-	static setActiveClass = (element, cssClass = 'active') => {
+	
+
+	static setActiveRowClass = (element, cssClass = 'active-row') => {
 		const parent = element.parentNode;
 		const lastActiveEl = parent.querySelector(`.${cssClass}`);
 		lastActiveEl?.classList.remove(cssClass);
 		element.classList.add(cssClass);
+	};
+
+	static setActiveColumnClass = (sortEl, clickedElement) => {
+		sortEl.querySelector(`.${classNames.activeSort}`)?.classList.remove(classNames.activeSort);
+		clickedElement.classList.add(classNames.activeSort);
 	};
 
 	handleTeamClick = (e) => {
@@ -23,7 +31,7 @@ class Team {
 		if (clickedElement) {
 			this.appState.currentTeamId = parseInt(clickedElement.getAttribute('data-team-id'));
 			this.renderTeamPlayers();
-			Team.setActiveClass(clickedElement);
+			Team.setActiveRowClass(clickedElement);
 		}
 	};
 
@@ -42,8 +50,10 @@ class Team {
 		this.appState.sort[dataType].direction = direction;
 		this.appState.sort[dataType].column = column;
 		this.service.sort();
+		Team.setActiveColumnClass(sortEl, clickedElement);
 		clickedElement.dataset.direction = direction === 'asc' ? 'dsc' : 'asc';
 		this.renderData(this.appState[dataType], dataElement, row);
+		console.log(this.appState);
 	};
 
 	renderData = (data, element, row) => {
@@ -57,7 +67,7 @@ class Team {
 
 		if (this.firstTeamsRender) {
 			element.addEventListener('click', this.handleTeamClick);
-			this.appState.watchState();
+			// this.appState.watchState();
 			this.firstTeamsRender = false;
 		}
 	};
