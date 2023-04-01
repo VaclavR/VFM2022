@@ -1,5 +1,5 @@
 export const classNames = {
 	activeRow: 'active-row',
-	activeSort: 'active-sort',
+	activeSort: 'sort--active',
 	hidden: 'd-none'
 };

@@ -1,8 +1,9 @@
-import { getTeamById } from './model.js';
-import { teamRow, playerRow } from './html.js';
+import { getTeamById } from './model';
+import { teamRow } from './templates/teams';
+import { playerRow } from './templates/players';
 import { service } from './Service';
 import { appState } from './AppState';
-import { classNames } from './classNames.js';
+import { classNames } from './classNames';
 
 class Team {
 	constructor(appState, service) {
@@ -12,9 +13,7 @@ class Team {
 		this.firstTeamsRender = true;
 	}
 
-	
-
-	static setActiveRowClass = (element, cssClass = 'active-row') => {
+	static setActiveRowClass = (element, cssClass = classNames.activeRow) => {
 		const parent = element.parentNode;
 		const lastActiveEl = parent.querySelector(`.${cssClass}`);
 		lastActiveEl?.classList.remove(cssClass);
@@ -42,7 +41,9 @@ class Team {
 
 	handleSortClick = (sortEl, row) => (e) => {
 		const clickedElement = e.target;
+		console.log(e.target);
 		const column = clickedElement.getAttribute('data-sort');
+		if (!column) return;
 		const direction = clickedElement.getAttribute('data-direction');
 		const dataElement = sortEl.closest('.table').querySelector('[data-sort-data]');
 		const dataType = dataElement.getAttribute('data-sort-data');
@@ -53,7 +54,6 @@ class Team {
 		Team.setActiveColumnClass(sortEl, clickedElement);
 		clickedElement.dataset.direction = direction === 'asc' ? 'dsc' : 'asc';
 		this.renderData(this.appState[dataType], dataElement, row);
-		console.log(this.appState);
 	};
 
 	renderData = (data, element, row) => {
@@ -67,7 +67,7 @@ class Team {
 
 		if (this.firstTeamsRender) {
 			element.addEventListener('click', this.handleTeamClick);
-			// this.appState.watchState();
+			this.appState.watchState();
 			this.firstTeamsRender = false;
 		}
 	};

@@ -17,6 +17,7 @@ class AppState {
 				direction: 'asc'
 			}
 		};
+		this.language = window.location.pathname.includes('/en') ? 'en' : 'cs';
 	}
 
 	watchState = (interval = 10000) => {

@@ -17,12 +17,12 @@ $gridColumnGap: 10px;
 
 @mixin common-col-style($col) {
   box-sizing: border-box;
-  width: #{$col}#{'%'};
+  width: calc(#{$col}#{'%'} - 2 * #{$gridColumnGap});
 }
 
 @each $col in $cols {
   .col-#{$col} {
-    padding: 0 $gridColumnGap;
+    margin: 0 $gridColumnGap;
 
     @include common-col-style($col);
   }

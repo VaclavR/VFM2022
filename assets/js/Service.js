@@ -1,12 +1,18 @@
 import { appState } from "./AppState";
+import cs from '../translates/cs.json';
+import en from '../translates/en.json';
 
 class Service {
 	
 	constructor(appState) {
 		this.appState = appState;
+		this.translates = {
+			cs: cs,
+			en: en
+		};
 	}
 
-	priceFormat = (price, currency = 'CZK') => {
+	price = (price, currency = 'CZK') => {
 		return new Intl.NumberFormat('cs-CS', {
 			style: 'currency',
 			currency: currency,
@@ -23,6 +29,9 @@ class Service {
 			this.appState[dataType].sort((a, b) => a[column] > b[column] ? -1 : a[column] < b[column] ? 1 : 0);
 		}
 	};
+
+	trans = text => this.translates[this.appState.language][text];
 }
 
 export const service = new Service(appState);
+export const trans = service.trans;

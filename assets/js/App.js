@@ -1,6 +1,7 @@
 import { team }  from "./Team";
-import teamsHeaderHtml from 'bundle-text:../../templates/teams-header.html';
-import playersHeader from 'bundle-text:../../templates/players-header.html';
+import { teamHeader } from "./templates/teams";
+import { playerHeader } from "./templates/players";
+import { languageSwitcher } from "./templates/languageSwitcher";
 
 class App {
 
@@ -9,8 +10,9 @@ class App {
 	}
 
 	static renderNoJsHtml = () => {
-		document.getElementById('box-1').innerHTML = teamsHeaderHtml;
-		document.getElementById('box-2').innerHTML = playersHeader;
+		document.getElementById('language-switcher').innerHTML = languageSwitcher();
+		document.getElementById('box-1').innerHTML = teamHeader();
+		document.getElementById('box-2').innerHTML = playerHeader();
 	};
 
 	start() {

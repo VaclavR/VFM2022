@@ -7,6 +7,22 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.header {
+    padding: 10px 0;
+    display: flex;
+    justify-content: end;
+}
+
+.language-switcher {
+    display: inline-block;
+
+    &__link {
+        text-decoration: none;
+        text-transform: uppercase;
+        color: $white;
+    }
+}
+
 .separator {
     border-color: $green;
     border-style: solid;
@@ -35,19 +51,87 @@ body {
     font-weight: 600;
 }
 
-.active-sort {
+.sort {
     position: relative;
+    display: inline-block;
 
     &::after {
         position: absolute;
-        right: 0;
-        content: '\2304';
+        right: -14px;
+        font-weight: 500;
+        content: '\005E';
+        opacity: 0;
+        transition: all .2s  step-end;
+    }
+
+    &--active {
+
+        &::after {
+           opacity: 1;
+        }
+
+        &:focus::after {
+            animation-duration: .2s;
+            animation-timing-function: linear;
+            animation-delay: 0s;
+            animation-iteration-count: 1;
+            animation-direction: normal;
+            animation-fill-mode: none;
+            animation-play-state: running;
+        }
+    
+    
+        &[data-direction="dsc"] {
+            &:focus::after {
+                animation-name: scaleArrowRotateDown;
+            }
+            &::after {
+                transform: rotateX(180deg) translateY(4px);
+            }
+        }
+    
+        &[data-direction="asc"] {
+            &:focus::after {
+                    animation-name: scaleArrowRotateUp;
+            }
+            &::after {
+                transform: translateY(4px);
+            }
+        }
+    }
+}
+
+@keyframes scaleArrowRotateDown {
+    0% {
+        transform: translateY(4px) scale(1);
+    }
+
+    50% {
+        transform: translateY(0)scale(2) rotateX(90deg);
+    }
+
+    100% {
+        transform: translateY(-4px) scale(1) rotateX(180deg);
+    }
+}
+
+@keyframes scaleArrowRotateUp {
+    0% {
+        transform: translateY(-4px) scale(1) rotateX(180deg);
+    }
+
+    50% {
+        transform: translateY(0) scale(2) rotateX(90deg);
+    }
+
+    100% {
+        transform: translateY(4px) scale(1) ;
     }
 }
 
 .clickable-el {
     cursor: pointer;
-    transition: color .2s ease-in;
+    transition: color .2s linear;
 
     &:hover {
         color: $yellow;
