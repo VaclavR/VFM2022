@@ -41,7 +41,6 @@ class Team {
 
 	handleSortClick = (sortEl, row) => (e) => {
 		const clickedElement = e.target;
-		console.log(e.target);
 		const column = clickedElement.getAttribute('data-sort');
 		if (!column) return;
 		const direction = clickedElement.getAttribute('data-direction');
@@ -56,7 +55,7 @@ class Team {
 		this.renderData(this.appState[dataType], dataElement, row);
 	};
 
-	renderData = (data, element, row) => {
+	renderData = (data, element, row, languageChange = false) => {
 		let rows = '';
 
 		data.forEach(item => {
@@ -65,27 +64,27 @@ class Team {
 
 		element.innerHTML = rows;
 
-		if (this.firstTeamsRender) {
+		if (this.firstTeamsRender || languageChange) {
 			element.addEventListener('click', this.handleTeamClick);
-			this.appState.watchState();
+			// this.appState.watchState();
 			this.firstTeamsRender = false;
 		}
 	};
 
-	getAndRenderAllTeams = async () => {
+	getAndRenderAllTeams = async (languageChange = false) => {
 		try {
 			await this.appState.loadTeams();
 			const table = document.getElementById('team-list');
 			const sortControlEl = table.querySelector('[data-sort-control]');
 			const teamListEl = table.querySelector('[data-sort-data]');
-			this.renderData(this.appState.teams, teamListEl, teamRow);
+			this.renderData(this.appState.teams, teamListEl, teamRow, languageChange);
 			this.initSort(sortControlEl, teamRow);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	renderTeamPlayers = async () => {
+	renderTeamPlayers = async (languageChange = false) => {
 		try {
 			await this.appState.loadPlayers();
 			const playerBoxEl = document.getElementById('box-2');
@@ -102,7 +101,7 @@ class Team {
 				});
 			this.renderData(this.appState.players, playerListEl, playerRow);
 
-			if (this.firstPlayersRender) {
+			if (this.firstPlayersRender || languageChange) {
 				this.initSort(sortControlEl, playerRow);
 				playerBoxEl.classList.remove('d-none');
 				this.firstPlayersRender = false;

@@ -27,23 +27,24 @@ export const teamRow = (team) => {
 
 export const teamHeader = () => {
 	return  /*html*/`
-    <h2 class="heading mb-20">${trans('choose_team')}</h2>
+    <h2 class="heading mb-20" data-trans="choose_team"></h2>
         <div class="table" id="team-list">
             <div class="row text-bold" data-sort-control>
                 <div class="col-20">
-                    <div class="clickable-el sort" data-sort="name" data-direction="dsc" tabindex="0">${trans('team')}</div>
+                    <div class="clickable-el sort" 
+                    data-sort="name" data-direction="dsc" data-trans="team"></div>
                 </div>
                 <div class="col-20">
-                    <div class="clickable-el sort" data-sort="stadium" data-direction="dsc" tabindex="0">${trans('stadium')}</div>
+                    <div class="clickable-el sort" data-sort="stadium" data-direction="dsc" data-trans="stadium"></div>
                 </div>
                 <div class="col-20">
-                    <div class="clickable-el sort" data-sort="capacity" data-direction="dsc" tabindex="0">${trans('capacity')}</div>
+                    <div class="clickable-el sort" data-sort="capacity" data-direction="dsc" data-trans="capacity"></div>
                 </div>
                 <div class="col-20">
-                    <div class="clickable-el sort" data-sort="city" data-direction="dsc" tabindex="0">${trans('city')}</div>
+                    <div class="clickable-el sort" data-sort="city" data-direction="dsc" data-trans="city"></div>
                 </div>
                 <div class="col-20">
-                    <div class="clickable-el sort" data-sort="sponsor" data-direction="dsc" tabindex="0">${trans('sponsor')}</div>
+                    <div class="clickable-el sort" data-sort="sponsor" data-direction="dsc" data-trans="sponsor"></div>
                 </div>
             </div>
             <hr class="separator mt-10 mb-10">

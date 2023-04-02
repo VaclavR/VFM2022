@@ -17,9 +17,8 @@ body {
     display: inline-block;
 
     &__link {
-        text-decoration: none;
         text-transform: uppercase;
-        color: $white;
+        cursor: pointer;
     }
 }
 
@@ -55,77 +54,27 @@ body {
     position: relative;
     display: inline-block;
 
-    &::after {
-        position: absolute;
-        right: -14px;
-        font-weight: 500;
-        content: '\005E';
-        opacity: 0;
-        transition: all .2s  step-end;
-    }
-
     &--active {
 
         &::after {
-           opacity: 1;
-        }
-
-        &:focus::after {
-            animation-duration: .2s;
-            animation-timing-function: linear;
-            animation-delay: 0s;
-            animation-iteration-count: 1;
-            animation-direction: normal;
-            animation-fill-mode: none;
-            animation-play-state: running;
+            position: absolute;
+            right: -14px;
+            font-weight: 500;
+            content: '\005E';
+            transition: all .2s ease-in;
         }
     
-    
-        &[data-direction="dsc"] {
-            &:focus::after {
-                animation-name: scaleArrowRotateDown;
-            }
+        &[data-direction="asc"] {
             &::after {
                 transform: rotateX(180deg) translateY(4px);
             }
         }
     
-        &[data-direction="asc"] {
-            &:focus::after {
-                    animation-name: scaleArrowRotateUp;
-            }
+        &[data-direction="dsc"] {
             &::after {
                 transform: translateY(4px);
             }
         }
-    }
-}
-
-@keyframes scaleArrowRotateDown {
-    0% {
-        transform: translateY(4px) scale(1);
-    }
-
-    50% {
-        transform: translateY(0)scale(2) rotateX(90deg);
-    }
-
-    100% {
-        transform: translateY(-4px) scale(1) rotateX(180deg);
-    }
-}
-
-@keyframes scaleArrowRotateUp {
-    0% {
-        transform: translateY(-4px) scale(1) rotateX(180deg);
-    }
-
-    50% {
-        transform: translateY(0) scale(2) rotateX(90deg);
-    }
-
-    100% {
-        transform: translateY(4px) scale(1) ;
     }
 }
 

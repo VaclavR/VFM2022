@@ -17,7 +17,7 @@ class AppState {
 				direction: 'asc'
 			}
 		};
-		this.language = window.location.pathname.includes('/en') ? 'en' : 'cs';
+		this.language = 'cs';
 	}
 
 	watchState = (interval = 10000) => {
@@ -28,7 +28,7 @@ class AppState {
 
 	async loadTeams() {
 		try {
-			this.teams = await getTeamsFromFirebase();
+			this.teams = this.teams.length ? this.teams : await getTeamsFromFirebase();
 		} catch (error) {
 			console.log(error);
 		}
@@ -36,7 +36,7 @@ class AppState {
 
 	async loadPlayers() {
 		try {
-			this.players = await getPlayersFromFirebase(this.currentTeamId);
+			this.players = this.players.length ? this.players : await getPlayersFromFirebase(this.currentTeamId);
 		} catch (error) {
 			console.log(error);
 		}
