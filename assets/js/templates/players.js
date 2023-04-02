@@ -1,10 +1,13 @@
-import { service, trans } from "../Service";
-import { appState } from "../AppState";
+import { service, trans } from '../Service';
+import { appState } from '../AppState';
 
 export const playerHeader = () => {
 
 	return /*html*/ `
-	<h2 class="heading mb-20"><span data-trans="team_roster"></span> <span data-team-name></span></h2>
+	<div class="d-flex space-between">
+		<h2 class="heading mb-20"><span data-trans="team_roster"></span> <span data-team-name></span></h2>
+		<div class="clickable-el" data-trans="pick_team" data-pick-team></div>
+	</div>	
 	<div class="table" data-players-table>
 		<div class="row text-bold" data-sort-control>
 			<div class="col-20">

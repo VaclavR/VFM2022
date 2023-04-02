@@ -1,5 +1,4 @@
-import { app } from "./App";
-import { appState } from "./AppState";
+import { appState } from './AppState';
 import cs from '../translates/cs.json';
 import en from '../translates/en.json';
 
@@ -41,13 +40,11 @@ class Service {
 	translatePage = () => {
 		const transElement = document.querySelectorAll('[data-trans]');
 		transElement.forEach((transEl) => {
-			transEl.textContent = this.translates[this.appState.language][transEl.dataset.trans];
+			const translate = this.translates[this.appState.language][transEl.dataset.trans];
+			transEl.textContent = translate ? translate : transEl.dataset.trans;
 		});
 		localStorage.setItem('language', this.appState.language);
 	};
-
-	trans = text => this.translates[this.appState.language][text];
 }
 
 export const service = new Service(appState);
-export const trans = service.trans;

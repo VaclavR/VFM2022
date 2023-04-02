@@ -1,6 +1,5 @@
-import { appState } from "../AppState";
+import { appState } from '../AppState';
 import { classNames } from '../classNames';
-import { trans } from "../Service";
 
 export const teamRow = (team) => {
 	const activeClass = appState.currentTeamId === team.id ? ` ${classNames.activeRow}` : '';

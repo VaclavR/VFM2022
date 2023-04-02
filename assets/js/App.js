@@ -1,8 +1,8 @@
 import { service } from './Service';
-import { team }  from "./Team";
-import { teamHeader } from "./templates/teams";
-import { playerHeader } from "./templates/players";
-import { languageSwitcher } from "./templates/languageSwitcher";
+import { team }  from './Team';
+import { teamHeader } from './templates/teams';
+import { playerHeader } from './templates/players';
+import { languageSwitcher } from './templates/languageSwitcher';
 
 class App {
 

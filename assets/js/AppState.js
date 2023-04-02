@@ -1,4 +1,4 @@
-import { getTeamsFromFirebase, getPlayersFromFirebase } from "./model";
+import { getTeamsFromFirebase, getPlayersFromFirebase } from './model';
 
 class AppState {
 	constructor() {
