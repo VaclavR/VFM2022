@@ -39,10 +39,11 @@ class Service {
 	};
 
 	translatePage = () => {
-		const textTrans = document.querySelectorAll('[data-trans]');
-		textTrans.forEach((trans) => {
-			trans.textContent = this.translates[this.appState.language][trans.dataset.trans];
+		const transElement = document.querySelectorAll('[data-trans]');
+		transElement.forEach((transEl) => {
+			transEl.textContent = this.translates[this.appState.language][transEl.dataset.trans];
 		});
+		localStorage.setItem('language', this.appState.language);
 	};
 
 	trans = text => this.translates[this.appState.language][text];
