@@ -24,6 +24,9 @@
         "prefer-const": [
             "error"
         ],
+        "quotes": [
+            2, "single"
+        ],
         "no-unused-vars": "off"
     }
 }

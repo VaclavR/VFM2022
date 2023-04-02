@@ -7,6 +7,21 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.header {
+    padding: 10px 0;
+    display: flex;
+    justify-content: end;
+}
+
+.language-switcher {
+    display: inline-block;
+
+    &__link {
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+}
+
 .separator {
     border-color: $green;
     border-style: solid;
@@ -30,13 +45,42 @@ body {
     border: 2px solid $green;
 }
 
-.active {
+.active-row {
     color: $yellow;
+    font-weight: 600;
+}
+
+.sort {
+    position: relative;
+    display: inline-block;
+
+    &--active {
+
+        &::after {
+            position: absolute;
+            right: -14px;
+            font-weight: 500;
+            content: '\005E';
+            transition: all .2s ease-in;
+        }
+    
+        &[data-direction="asc"] {
+            &::after {
+                transform: rotateX(180deg) translateY(4px);
+            }
+        }
+    
+        &[data-direction="dsc"] {
+            &::after {
+                transform: translateY(4px);
+            }
+        }
+    }
 }
 
 .clickable-el {
     cursor: pointer;
-    transition: color .2s ease-in;
+    transition: color .2s linear;
 
     &:hover {
         color: $yellow;

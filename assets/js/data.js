@@ -1,90 +1,90 @@
 export const players = [
 	{
 		id: 1,
-		name: "Tomáš Vaclík",
+		name: 'Tomáš Vaclík',
 		teamId: 1,
 		age: 33,
-		position: "brankář",
+		position: 'brankář',
 		price: 20000000,
 	},
 	{
 		id: 2,
-		name: "David Lischka",
+		name: 'David Lischka',
 		teamId: 1,
 		age: 26,
-		position: "obránce",
+		position: 'obránce',
 		price: 5000000,
 	},
 	{
 		id: 3,
-		name: "Ondřej Čelůstka",
+		name: 'Ondřej Čelůstka',
 		teamId: 1,
 		age: 32,
-		position: "obránce",
+		position: 'obránce',
 		price: 15000000,
 	},
 	{
 		id: 4,
-		name: "Michal Šmíd",
+		name: 'Michal Šmíd',
 		teamId: 1,
 		age: 29,
-		position: "obránce",
+		position: 'obránce',
 		price: 8000000,
 	},
 	{
 		id: 5,
-		name: "Filip Panák",
+		name: 'Filip Panák',
 		teamId: 1,
 		age: 24,
-		position: "záložník",
+		position: 'záložník',
 		price: 10000000,
 	},
 	{
 		id: 6,
-		name: "Lukáš Štetina",
+		name: 'Lukáš Štetina',
 		teamId: 1,
 		age: 26,
-		position: "záložník",
+		position: 'záložník',
 		price: 7000000,
 	},
 	{
 		id: 7,
-		name: "Lukáš Juliš",
+		name: 'Lukáš Juliš',
 		teamId: 1,
 		age: 28,
-		position: "záložník",
+		position: 'záložník',
 		price: 12000000,
 	},
 	{
 		id: 8,
-		name: "Michal Trávník",
+		name: 'Michal Trávník',
 		teamId: 1,
 		age: 28,
-		position: "záložník",
+		position: 'záložník',
 		price: 10000000,
 	},
 	{
 		id: 9,
-		name: "Lukáš Juliš",
+		name: 'Lukáš Juliš',
 		teamId: 1,
 		age: 28,
-		position: "útočník",
+		position: 'útočník',
 		price: 12000000,
 	},
 	{
 		id: 10,
-		name: "Adam Hložek",
+		name: 'Adam Hložek',
 		teamId: 1,
 		age: 18,
-		position: "útočník",
+		position: 'útočník',
 		price: 35000000,
 	},
 	{
 		id: 11,
-		name: "Matěj Hanousek",
+		name: 'Matěj Hanousek',
 		teamId: 1,
 		age: 24,
-		position: "útočník",
+		position: 'útočník',
 		price: 9000000,
 	},
 	{
@@ -249,90 +249,90 @@ export const players = [
 	},
 	{
 		id: 32,
-		name: "Jan Novák",
+		name: 'Jan Novák',
 		teamId: 4,
 		age: 25,
-		position: "brankář",
+		position: 'brankář',
 		price: 50000
 	},
 	{
 		id: 33,
-		name: "Pavel Vávra",
+		name: 'Pavel Vávra',
 		teamId: 4,
 		age: 28,
-		position: "obránce",
+		position: 'obránce',
 		price: 20000
 	},
 	{
 		id: 34,
-		name: "Tomáš Hájek",
+		name: 'Tomáš Hájek',
 		teamId: 4,
 		age: 24,
-		position: "obránce",
+		position: 'obránce',
 		price: 15000
 	},
 	{
 		id: 35,
-		name: "David Limberský",
+		name: 'David Limberský',
 		teamId: 4,
 		age: 37,
-		position: "obránce",
+		position: 'obránce',
 		price: 25000
 	},
 	{
 		id: 36,
-		name: "Petr Ševčík",
+		name: 'Petr Ševčík',
 		teamId: 4,
 		age: 26,
-		position: "záložník",
+		position: 'záložník',
 		price: 30000
 	},
 	{
 		id: 37,
-		name: "Michal Kovařík",
+		name: 'Michal Kovařík',
 		teamId: 4,
 		age: 32,
-		position: "záložník",
+		position: 'záložník',
 		price: 35000
 	},
 	{
 		id: 38,
-		name: "Jan Kopic",
+		name: 'Jan Kopic',
 		teamId: 4,
 		age: 28,
-		position: "záložník",
+		position: 'záložník',
 		price: 40000
 	},
 	{
 		id: 39,
-		name: "Lukáš Hejda",
+		name: 'Lukáš Hejda',
 		teamId: 4,
 		age: 25,
-		position: "záložník",
+		position: 'záložník',
 		price: 25000
 	},
 	{
 		id: 40,
-		name: "Adrián Šemík",
+		name: 'Adrián Šemík',
 		teamId: 4,
 		age: 23,
-		position: "útočník",
+		position: 'útočník',
 		price: 20000
 	},
 	{
 		id: 41,
-		name: "Jakub Řezníček",
+		name: 'Jakub Řezníček',
 		teamId: 4,
 		age: 22,
-		position: "útočník",
+		position: 'útočník',
 		price: 25000
 	},
 	{
 		id: 42,
-		name: "Michal Krmenčík",
+		name: 'Michal Krmenčík',
 		teamId: 4,
 		age: 28,
-		position: "útočník",
+		position: 'útočník',
 		price: 50000
 	}
 ];
@@ -340,34 +340,34 @@ export const players = [
 export const teams = [
 	{
 		id: 1,
-		name: "AC Sparta Praha",
-		city: "Praha",
-		stadium: "Generali Arena",
+		name: 'AC Sparta Praha',
+		city: 'Praha',
+		stadium: 'Generali Arena',
 		capacity: 19260,
-		sponsor: "ePojisteni.cz"
+		sponsor: 'ePojisteni.cz'
 	},
 	{
 		id: 2,
-		name: "SK Slavia Praha",
-		city: "Praha",
-		stadium: "Eden Aréna",
+		name: 'SK Slavia Praha',
+		city: 'Praha',
+		stadium: 'Eden Aréna',
 		capacity: 21000,
-		sponsor: "Europ Assistance"
+		sponsor: 'Europ Assistance'
 	},
 	{
 		id: 3,
-		name: "FC Baník Ostrava",
-		city: "Ostrava",
-		stadium: "Městský stadion",
+		name: 'FC Baník Ostrava',
+		city: 'Ostrava',
+		stadium: 'Městský stadion',
 		capacity: 15250,
-		sponsor: "OKD"
+		sponsor: 'OKD'
 	},
 	{
 		id: 4,
-		name: "FC Viktoria Plzeň",
-		city: "Plzeň",
-		stadium: "Doosan Arena",
+		name: 'FC Viktoria Plzeň',
+		city: 'Plzeň',
+		stadium: 'Doosan Arena',
 		capacity: 11246,
-		sponsor: "Škoda Transportation"
+		sponsor: 'Škoda Transportation'
 	}
 ];

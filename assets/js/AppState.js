@@ -1,4 +1,4 @@
-import { getTeamsFromFirebase, getPlayersFromFirebase } from "./model";
+import { getTeamsFromFirebase, getPlayersFromFirebase } from './model';
 
 class AppState {
 	constructor() {
@@ -17,6 +17,7 @@ class AppState {
 				direction: 'asc'
 			}
 		};
+		this.language = localStorage.getItem('language') ? localStorage.getItem('language'): 'cs';
 	}
 
 	watchState = (interval = 10000) => {

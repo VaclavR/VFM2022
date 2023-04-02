@@ -1,16 +1,12 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, get, child, query, onValue, orderByChild,equalTo } from 'firebase/database';
-
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/learn-more#config-object
-const firebaseConfig = {
-	// ...
-	// The value of `databaseURL` depends on the location of the database
-	databaseURL: 'https://vfm2023-e59bb-default-rtdb.europe-west1.firebasedatabase.app/',
-};
+import { getAnalytics } from 'firebase/analytics';
+import { getAuth, signInAnonymously } from 'firebase/auth';
+import { getDatabase, ref, get, child, query, onValue, orderByChild, equalTo } from 'firebase/database';
+import { firebaseConfig } from '../../secret/firebaseConfig';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 // Initialize Realtime Database and get a reference to the service
 const database = getDatabase(app);
@@ -19,6 +15,18 @@ const database = getDatabase(app);
 const dbRef = ref(database);
 const teamsRef = ref(database, 'teams');
 const playersRef = ref(database, 'players');
+
+const auth = getAuth();
+const userAuthenticatedEvent = new CustomEvent('userAuthenticated');
+
+signInAnonymously(auth)
+	.then(() => {
+		document.dispatchEvent(userAuthenticatedEvent);
+	})
+	.catch((error) => {
+		const errorCode = error.code;
+		const errorMessage = error.message;
+	});
 
 export const getPlayersFromFirebase = async (teamId) => {
 	const playersQuery = query(
